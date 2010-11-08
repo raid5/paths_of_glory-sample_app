@@ -1,0 +1,31 @@
+<% if user_signed_in? %>
+
+<%= link_to "Sign out", destroy_user_session_path %>
+
+<h1>Perform Actions</h1>
+
+<%= form_for(@post) do |f| %>
+  <div class="actions">
+    <%= f.submit %>
+    <%= pluralize current_user.posts.count, 'Post' %>
+  </div>
+<% end %>
+<br />
+<%= form_for(@comment) do |f| %>
+  <div class="actions">
+    <%= f.submit %>
+    <%= pluralize current_user.comments.count, 'Comment' %>
+  </div>
+<% end %>
+
+<h1>Achievements</h1>
+
+<%= render :partial => "achievement", :collection => current_user.achievements %>
+
+<% else %>
+
+<%= link_to "Sign in", new_user_session_path %>
+|
+<%= link_to "Sign up", new_user_registration_path %>
+
+<% end %>

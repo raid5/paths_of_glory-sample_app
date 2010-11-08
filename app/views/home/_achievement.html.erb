@@ -1,0 +1,10 @@
+<%= div_for achievement do %>
+  <% klass = Kernel.const_get achievement.type %>
+
+  <%= image_tag klass.image, :size => "50x50" %>
+  <%= achievement.type.titleize %><br />
+  <%= klass.description %><br />
+  Level <%= achievement.level %> (Earned <%= distance_of_time_in_words(Time.now, achievement.updated_at) %> ago)
+<% end %>
+
+<hr />
